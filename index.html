@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zidane Bin Zayed — Photographer & Filmmaker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --text: #e8e4dc;
+    --muted: #6b6560;
+    --accent: #c8b89a;
+    --border: #1e1e1e;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Montserrat', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    overflow-x: hidden;
+  }
+
+  /* ── GRAIN ── */
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1000; opacity: 0.35;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+    padding: 28px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+    transition: transform 0.4s ease;
+  }
+  .nav-logo {
+    font-family: var(--serif); font-size: 18px; font-weight: 400;
+    letter-spacing: 0.08em; color: var(--text); text-decoration: none; font-style: italic;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    transition: color 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ── HERO ── */
+  #hero {
+    height: 100vh; position: relative;
+    display: flex; align-items: flex-end;
+    padding: 60px 48px; overflow: hidden;
+    background-color: #0a0a0a;
+    --hero-image: url("hero.jpg");
+  }
+  #hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--hero-image);
+    background-position: center 24%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 0;
+  }
+  #hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(10,10,10,0.34);
+    pointer-events: none;
+  }
+  .hero-img {
+    display: none;
+  }
+  .hero-bg {
+    display: none;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 820px;
+  }
+  .hero-tag {
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px;
+    opacity: 0; animation: fadeUp 1s ease 0.3s forwards;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(52px, 8vw, 110px);
+    font-weight: 300; line-height: 0.92; letter-spacing: -0.01em;
+    opacity: 0; animation: fadeUp 1s ease 0.5s forwards;
+  }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    margin-top: 24px; font-size: 11px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+    opacity: 0; animation: fadeUp 1s ease 0.8s forwards;
+  }
+  .hero-scroll {
+    position: absolute; right: 48px; bottom: 60px; z-index: 2;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    opacity: 0; animation: fadeIn 1s ease 1.2s forwards;
+  }
+  .hero-scroll span {
+    font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--muted); writing-mode: vertical-rl;
+  }
+  .scroll-line {
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  @keyframes pulse  { 0%,100% { opacity:0.3; } 50% { opacity:1; } }
+
+  /* ── SECTION SHELL ── */
+  section { padding: 120px 48px; }
+  .section-header {
+    display: flex; align-items: baseline; gap: 24px; margin-bottom: 64px;
+  }
+  .section-num { font-size: 10px; letter-spacing: 0.2em; color: var(--accent); }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300; font-style: italic; line-height: 1;
+  }
+  .section-line { flex: 1; height: 1px; background: var(--border); margin-bottom: 4px; }
+
+  /* ── CLIENT DIVIDER LABEL ── */
+  .client-label {
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--accent); margin: 40px 0 6px; padding-left: 2px;
+  }
+  .client-label:first-of-type { margin-top: 0; }
+
+  /* ── VIDEO GRID ── */
+  #film { background: var(--bg); }
+  .film-shell { max-width: 1440px; }
+  .film-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2px;
+    align-items: stretch;
+  }
+  .film-more[hidden] { display: none; }
+  .film-more {
+    margin-top: 2px;
+  }
+  .film-card {
+    position: relative;
+    background: var(--bg2);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    isolation: isolate;
+    opacity: 0;
+    transform: translateY(24px);
+    animation: filmCardIn 0.7s ease forwards;
+    animation-delay: var(--delay, 0ms);
+  }
+  .film-media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: linear-gradient(135deg, #181716 0%, #0f0f0f 52%, #070707 100%);
+    cursor: pointer;
+  }
+  .film-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,10,10,0.72), rgba(10,10,10,0.05));
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+  .film-card:hover .film-media::after { opacity: 0.45; }
+  .film-media video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    background: #090909;
+  }
+  .film-toggle {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 18px;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    text-align: left;
+  }
+  .film-toggle:focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: -4px;
+  }
+  .film-play-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .film-play-icon {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(200,184,154,0.48);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: rgba(10,10,10,0.24);
+    backdrop-filter: blur(4px);
+  }
+  .film-play-icon::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 7px solid var(--accent);
+    margin-left: 2px;
+  }
+  .film-meta {
+    padding: 18px 18px 20px;
+    border-top: 1px solid var(--border);
+  }
+  .film-meta h3 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .film-meta p {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .film-toggle-row {
+    margin-top: 18px;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .film-reveal-toggle {
+    border: 1px solid rgba(200,184,154,0.55);
+    background: transparent;
+    color: var(--text);
+    padding: 14px 18px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  }
+  .film-reveal-toggle:hover {
+    background: var(--accent);
+    color: #111;
+    transform: translateY(-1px);
+  }
+  .film-reveal-toggle:focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: 4px;
+  }
+  .film-empty {
+    max-width: 460px;
+    margin-top: 18px;
+    font-size: 11px;
+    line-height: 1.9;
+    color: var(--muted);
+  }
+  /* ── ALBUM GRIDS ── */
+  .album-shell { max-width: 1440px; }
+  .album-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2px;
+    align-items: stretch;
+  }
+  .album-more[hidden] { display: none; }
+  .album-more { margin-top: 2px; }
+  .album-card {
+    display: flex;
+    flex-direction: column;
+    color: inherit;
+    text-decoration: none;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+    opacity: 0;
+    transform: translateY(24px);
+    animation: filmCardIn 0.7s ease forwards;
+    animation-delay: var(--delay, 0ms);
+  }
+  .album-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid transparent;
+    transition: border-color 0.25s ease;
+    pointer-events: none;
+  }
+  .album-card:hover::after { border-color: rgba(200,184,154,0.45); }
+  .album-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: linear-gradient(135deg, #181716 0%, #0f0f0f 52%, #070707 100%);
+  }
+  .album-media img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.7s ease, filter 0.7s ease;
+    filter: brightness(0.88);
+  }
+  .album-card:hover .album-media img {
+    transform: scale(1.03);
+    filter: brightness(1);
+  }
+  .album-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,10,10,0.72), rgba(10,10,10,0.06));
+    pointer-events: none;
+  }
+  .album-meta {
+    padding: 18px 18px 20px;
+    border-top: 1px solid var(--border);
+    min-height: 112px;
+  }
+  .album-meta h3 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .album-meta p {
+    font-size: 10px;
+    line-height: 1.8;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .album-toggle-row {
+    margin-top: 18px;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .album-reveal-toggle {
+    border: 1px solid rgba(200,184,154,0.55);
+    background: transparent;
+    color: var(--text);
+    padding: 14px 18px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  }
+  .album-reveal-toggle:hover {
+    background: var(--accent);
+    color: #111;
+    transform: translateY(-1px);
+  }
+  .album-reveal-toggle:focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: 4px;
+  }
+  .album-empty {
+    max-width: 520px;
+    margin-top: 18px;
+    font-size: 11px;
+    line-height: 1.9;
+    color: var(--muted);
+  }
+  @keyframes filmCardIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SHARED IMAGE STYLES ── */
+  .img-item { overflow: hidden; position: relative; break-inside: avoid; margin-bottom: 2px; }
+  .img-item img {
+    width: 100%; display: block;
+    transition: transform 0.6s ease, filter 0.6s ease;
+    filter: brightness(0.88);
+  }
+  .placeholder-media,
+  .placeholder-video {
+    display: none;
+  }
+  .img-item:hover img { transform: scale(1.03); filter: brightness(1); }
+  .img-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 40px 20px 20px;
+    background: linear-gradient(to top, rgba(10,10,10,0.9), transparent);
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+    opacity: 0; transition: opacity 0.3s ease;
+  }
+  .img-item:hover .img-caption { opacity: 1; }
+
+  /* ── EDITORIAL  (3-column masonry) ── */
+  #editorial { background: var(--bg2); }
+  .masonry-3 { columns: 3; column-gap: 2px; }
+
+  /* ── COMMERCIAL (3-column grid) ── */
+  #commercial { background: var(--bg); }
+  .commercial-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-bottom: 2px; }
+  .commercial-item { position: relative; overflow: hidden; }
+  .commercial-item img { width: 100%; display: block; transition: transform 0.6s ease, filter 0.6s ease; filter: brightness(0.88); }
+  .commercial-item:hover img { transform: scale(1.04); filter: brightness(1); }
+  .commercial-overlay {
+    position: absolute; inset: 0; background: rgba(10,10,10,0);
+    transition: background 0.4s ease;
+    display: flex; align-items: flex-end; padding: 28px;
+  }
+  .commercial-item:hover .commercial-overlay { background: rgba(10,10,10,0.62); }
+  .commercial-label { opacity: 0; transition: opacity 0.4s ease; }
+  .commercial-item:hover .commercial-label { opacity: 1; }
+  .commercial-label h3 { font-family: var(--serif); font-size: 22px; font-weight: 400; font-style: italic; }
+  .commercial-label span { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
+
+  /* Ubrik — only 2 photos so make them wider */
+  .commercial-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+
+  /* ── PERSONAL (2-column masonry, sub-labelled) ── */
+  #personal { background: var(--bg2); }
+  .masonry-2 { columns: 2; column-gap: 2px; }
+  .personal-block { margin-bottom: 40px; }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--bg);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+  }
+  .about-text {
+    font-family: var(--serif); font-size: 22px; font-weight: 300;
+    line-height: 1.7; color: var(--text); margin-bottom: 32px;
+  }
+  .about-text em { font-style: italic; color: var(--accent); }
+  .about-body { font-size: 13px; line-height: 1.9; color: var(--muted); margin-bottom: 24px; }
+  .about-credits {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    border-top: 1px solid var(--border); padding-top: 32px; margin-top: 8px;
+  }
+  .credit-label { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .credit-value { font-family: var(--serif); font-size: 15px; font-weight: 400; }
+  .about-right { padding-top: 120px; }
+  .about-right img { width: 100%; display: block; filter: brightness(0.85) contrast(1.05); }
+
+  /* ── CONTACT / FOOTER ── */
+  #contact {
+    background: var(--bg2); padding: 80px 48px;
+    border-top: 1px solid var(--border);
+  }
+  .contact-inner { display: flex; justify-content: space-between; align-items: center; }
+  .contact-tag { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .contact-cta { font-family: var(--serif); font-size: clamp(32px,4vw,56px); font-weight: 300; font-style: italic; line-height: 1.1; }
+  .contact-email {
+    display: inline-block; margin-top: 32px;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text); text-decoration: none;
+    border-bottom: 1px solid var(--accent); padding-bottom: 4px;
+    transition: color 0.3s ease;
+  }
+  .contact-email:hover { color: var(--accent); }
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 28px;
+    margin-top: 18px;
+  }
+  .contact-link {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 3px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+  .contact-link:hover {
+    color: var(--text);
+    border-color: var(--accent);
+  }
+  .footer-right { text-align: right; }
+  .footer-right p { font-size: 10px; letter-spacing: 0.15em; color: var(--muted); line-height: 2; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s ease, transform 0.9s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .d1 { transition-delay: 0.1s; }
+  .d2 { transition-delay: 0.2s; }
+  .d3 { transition-delay: 0.3s; }
+  .d4 { transition-delay: 0.4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-links { gap: 18px; }
+    section { padding: 72px 20px; }
+    #hero { padding: 36px 20px; }
+    .hero-content { max-width: 100%; }
+    .hero-scroll { display: none; }
+    .film-grid { grid-template-columns: 1fr; }
+    .album-grid { grid-template-columns: 1fr; }
+    .masonry-3, .masonry-2 { columns: 1; }
+    .commercial-grid, .commercial-grid-2 { grid-template-columns: 1fr; }
+    #about { grid-template-columns: 1fr; gap: 40px; }
+    .about-right { padding-top: 0; }
+    .contact-inner { flex-direction: column; gap: 40px; }
+    .footer-right { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════════ -->
+<nav>
+  <a href="#hero" class="nav-logo">Zidane Bin Zayed</a>
+  <ul class="nav-links">
+    <li><a href="#film">Film & Video</a></li>
+    <li><a href="#editorial">Editorial</a></li>
+    <li><a href="#commercial">Commercial</a></li>
+    <li><a href="#personal">Personal</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+     ───────────────────────────────────────────────
+     RENAME your hero photo to:   hero.jpg
+     DROP it in the same folder as this file.
+═══════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-content">
+    <p class="hero-tag">Dubai — Photographer & Filmmaker</p>
+    <h1 class="hero-title">Zidane<br><em>Bin Zayed</em></h1>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     01 — FILM & VIDEO
+     ───────────────────────────────────────────────
+     Videos are managed separately.
+═══════════════════════════════════════════════ -->
+<section id="film">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Film & Video</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="film-shell">
+    <div class="film-grid" id="filmGrid" aria-live="polite"></div>
+    <div class="film-grid film-more" id="filmMore" hidden aria-live="polite"></div>
+    <p class="film-empty" id="filmEmpty">No videos added yet.</p>
+    <div class="film-toggle-row">
+      <button class="film-reveal-toggle" id="filmRevealToggle" type="button" hidden>Reveal more</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     02 — EDITORIAL
+═══════════════════════════════════════════════ -->
+<section id="editorial">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Editorial</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="album-shell">
+    <div class="album-grid" id="editorialGrid" aria-live="polite"></div>
+    <div class="album-grid album-more" id="editorialMore" hidden aria-live="polite"></div>
+    <p class="album-empty" id="editorialEmpty">No albums added yet.</p>
+    <div class="album-toggle-row">
+      <button class="album-reveal-toggle" id="editorialToggle" type="button" hidden>Reveal more</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     03 — COMMERCIAL
+═══════════════════════════════════════════════ -->
+<section id="commercial">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Commercial</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="album-shell">
+    <div class="album-grid" id="commercialGrid" aria-live="polite"></div>
+    <div class="album-grid album-more" id="commercialMore" hidden aria-live="polite"></div>
+    <p class="album-empty" id="commercialEmpty">No albums added yet.</p>
+    <div class="album-toggle-row">
+      <button class="album-reveal-toggle" id="commercialToggle" type="button" hidden>Reveal more</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     04 — PERSONAL WORK
+═══════════════════════════════════════════════ -->
+<section id="personal">
+  <div class="section-header reveal">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Personal Work</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="album-shell">
+    <div class="album-grid" id="personalGrid" aria-live="polite"></div>
+    <div class="album-grid album-more" id="personalMore" hidden aria-live="polite"></div>
+    <p class="album-empty" id="personalEmpty">No albums added yet.</p>
+    <div class="album-toggle-row">
+      <button class="album-reveal-toggle" id="personalToggle" type="button" hidden>Reveal more</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     05 — ABOUT
+     ───────────────────────────────────────────────
+     RENAME your photo to:   me.jpg
+     DROP it in the same folder as this file.
+═══════════════════════════════════════════════ -->
+<section id="about">
+
+  <div class="about-left">
+    <div class="section-header reveal">
+      <span class="section-num">05</span>
+      <h2 class="section-title">About</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p class="about-text reveal">
+      Dubai-based photographer and filmmaker with a focus on
+      <em>cinematic visual storytelling</em>.
+    </p>
+
+    <p class="about-body reveal d1">
+      Since 2023 I've built a practice across commercial and personal work —
+      shooting product campaigns, restaurant promos, and video ads.
+      Alongside freelance work I served as head of media for GEMS Founders School,
+      leading a team of 27 across all media operations for the school and GFSMUN
+      conferences in the academic year 2025-2026.
+    </p>
+
+    <p class="about-body reveal d2">
+      Over my three years of media experience and 17 official media roles in my school,
+      I've come to find that this is all I really want to do in life, because
+      cinematography and picture allow me to convey the emotions that I wouldn't otherwise
+      have the courage to show, and it's enabled me to create extraordinary moments with
+      my friends and family. The goal is to be a Director of Photography for major motion
+      productions one day, and I hope to see you at the movies.
+    </p>
+
+    <div class="about-credits reveal d3">
+      <div>
+        <p class="credit-label">Based in</p>
+        <p class="credit-value">Dubai, UAE</p>
+      </div>
+      <div>
+        <p class="credit-label">Specialising in</p>
+        <p class="credit-value">Cinematography</p>
+      </div>
+      <div>
+        <p class="credit-label">Clients include</p>
+        <p class="credit-value">Quick Style · Jala Dubai · Ubrik · House Of Tailors</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-right reveal d2">
+    <img src="me.jpg" alt="Zidane Bin Zayed">
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     CONTACT / FOOTER
+═══════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <p class="contact-tag">Get in touch</p>
+      <h2 class="contact-cta">Let's work<br>together.</h2>
+      <a href="mailto:zidanezayed8@icloud.com" class="contact-email">zidanezayed8@icloud.com</a>
+      <div class="contact-links" aria-label="Social links">
+        <a class="contact-link" href="https://www.instagram.com/zdnbzyd/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a class="contact-link" href="https://www.linkedin.com/in/zidane-bin-zayed-5aaa573ba" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-right reveal d2">
+      <p>© 2026 Zidane Bin Zayed</p>
+      <p style="margin-top:8px;">Dubai, UAE</p>
+      <p style="margin-top:24px;font-size:9px;letter-spacing:0.1em;">Photographer · Filmmaker · Visual Storyteller</p>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  (async function loadSiteContent() {
+    const pick = (value, fallback) => (value === undefined || value === null || value === '') ? fallback : value;
+
+    try {
+      const response = await fetch('content/site.json?ts=' + Date.now(), { cache: 'no-store' });
+      if (!response.ok) return;
+
+      const data = await response.json();
+
+      document.title = pick(data.siteTitle, document.title);
+
+      if (data.hero) {
+        const hero = document.getElementById('hero');
+        if (hero && data.hero.image) {
+          hero.style.setProperty('--hero-image', `url("${data.hero.image}")`);
+        }
+        const heroTag = document.querySelector('.hero-tag');
+        const heroTitle = document.querySelector('.hero-title');
+        const heroSub = document.querySelector('.hero-sub');
+        if (heroTag && data.hero.tag) heroTag.textContent = data.hero.tag;
+        if (heroTitle && data.hero.name) heroTitle.innerHTML = String(data.hero.name).replace(/\n/g, '<br>');
+        if (heroSub && data.hero.subtitle) heroSub.innerHTML = String(data.hero.subtitle).replace(/·/g, '&nbsp;·&nbsp;');
+      }
+
+      if (data.about) {
+        const headline = document.querySelector('.about-text');
+        const body = document.querySelectorAll('.about-body');
+        const credits = document.querySelectorAll('.about-credits .credit-value');
+        if (headline && data.about.headline) headline.innerHTML = data.about.headline.includes('<em>') ? data.about.headline : data.about.headline;
+        if (body[0] && data.about.body && data.about.body[0]) body[0].textContent = data.about.body[0];
+        if (body[1] && data.about.body && data.about.body[1]) body[1].textContent = data.about.body[1];
+        if (credits[0] && data.about.credits && data.about.credits[0]) credits[0].textContent = data.about.credits[0].value || credits[0].textContent;
+        if (credits[1] && data.about.credits && data.about.credits[1]) credits[1].textContent = data.about.credits[1].value || credits[1].textContent;
+        if (credits[2] && data.about.credits && data.about.credits[2]) credits[2].textContent = data.about.credits[2].value || credits[2].textContent;
+        if (credits[3] && data.about.credits && data.about.credits[3]) credits[3].textContent = data.about.credits[3].value || credits[3].textContent;
+      }
+
+      if (data.contact) {
+        const email = document.querySelector('.contact-email');
+        if (email && data.contact.email) {
+          email.href = `mailto:${data.contact.email}`;
+          email.textContent = data.contact.email;
+        }
+        const footer = document.querySelectorAll('#contact .footer-right p');
+        if (footer[0] && data.contact.footerLine1) footer[0].textContent = data.contact.footerLine1;
+        if (footer[1] && data.contact.footerLine2) footer[1].textContent = data.contact.footerLine2;
+        if (footer[2] && data.contact.footerLine3) footer[2].textContent = data.contact.footerLine3;
+      }
+
+    } catch (error) {
+      console.warn('Content load failed:', error);
+    }
+  })();
+</script>
+
+<script>
+  (function filmGalleryManager() {
+    const storageKey = 'zbz-film-videos-v1';
+    const videoFolder = 'Video Albums';
+    const catalogPath = 'Video Albums/videos.json';
+    const filmGrid = document.getElementById('filmGrid');
+    const filmMore = document.getElementById('filmMore');
+    const filmEmpty = document.getElementById('filmEmpty');
+    const filmRevealToggle = document.getElementById('filmRevealToggle');
+
+    if (!filmGrid || !filmMore || !filmEmpty || !filmRevealToggle) return;
+    let filmExpanded = false;
+    let currentVideos = [];
+
+    const readVideos = () => {
+      try {
+        const raw = localStorage.getItem(storageKey);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed.filter(item => item && item.file && item.title) : [];
+      } catch {
+        return [];
+      }
+    };
+
+    const normalizeVideo = (video) => {
+      if (!video || !video.file || !video.title) return null;
+      return {
+        id: String(video.id || ''),
+        title: String(video.title || ''),
+        subtitle: String(video.subtitle || ''),
+        file: String(video.file || '').trim(),
+      };
+    };
+
+    const loadRemoteVideos = async () => {
+      try {
+        const response = await fetch(`${encodeURI(catalogPath)}?v=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) return [];
+        const parsed = await response.json();
+        return Array.isArray(parsed) ? parsed.map(normalizeVideo).filter(Boolean) : [];
+      } catch {
+        return [];
+      }
+    };
+
+    const loadVideos = async () => {
+      const remoteVideos = await loadRemoteVideos();
+      if (remoteVideos.length) return remoteVideos;
+      return readVideos().map(normalizeVideo).filter(Boolean);
+    };
+
+    const escapeXml = (value) => String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+
+    const resolveVideoPath = (file) => {
+      const cleanFile = String(file || '').trim().replace(/^\/+/, '');
+      if (!cleanFile) return '';
+      if (/^[a-z]+:\/\//i.test(cleanFile) || cleanFile.startsWith('data:')) return cleanFile;
+      if (cleanFile.includes('/')) return cleanFile;
+      return `${videoFolder}/${cleanFile}`;
+    };
+
+    const makeFallbackThumb = (title, subtitle, index) => {
+      const palette = [
+        ['#bfa785', '#2a2118'],
+        ['#8a7c6b', '#151515'],
+        ['#c2b9a2', '#26211c'],
+        ['#a99a84', '#131313']
+      ][index % 4];
+      const safeTitle = escapeXml(title);
+      const safeSubtitle = escapeXml(subtitle || 'Direct MP4');
+      return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="${palette[0]}"/>
+              <stop offset="100%" stop-color="${palette[1]}"/>
+            </linearGradient>
+          </defs>
+          <rect width="1280" height="720" fill="url(#g)"/>
+          <rect width="1280" height="720" fill="rgba(10,10,10,0.28)"/>
+          <circle cx="1105" cy="118" r="64" fill="rgba(255,255,255,0.06)"/>
+          <text x="72" y="560" fill="#f2eee8" font-family="Georgia, serif" font-size="74" font-style="italic">${safeTitle}</text>
+          <text x="72" y="624" fill="#c8b89a" font-family="Montserrat, Arial, sans-serif" font-size="24" letter-spacing="6">${safeSubtitle}</text>
+          <text x="72" y="86" fill="#e8e4dc" font-family="Montserrat, Arial, sans-serif" font-size="18" letter-spacing="8">MP4 THUMBNAIL</text>
+        </svg>
+      `)}`;
+    };
+
+    const createCard = (item, index) => {
+      const card = document.createElement('article');
+      card.className = 'film-card';
+      card.style.setProperty('--delay', `${index * 90}ms`);
+
+      const media = document.createElement('div');
+      media.className = 'film-media';
+
+      const video = document.createElement('video');
+      video.className = 'film-preview';
+      const videoPath = resolveVideoPath(item.file);
+      video.src = encodeURI(videoPath);
+      video.poster = makeFallbackThumb(item.title, item.subtitle, index);
+      video.preload = 'auto';
+      video.playsInline = true;
+      video.setAttribute('webkit-playsinline', '');
+      video.muted = true;
+
+      video.addEventListener('loadedmetadata', () => {
+        const targetTime = video.duration && Number.isFinite(video.duration)
+          ? Math.min(Math.max(video.duration * 0.12, 0.12), 1.2)
+          : 0.5;
+        try {
+          video.currentTime = targetTime;
+        } catch {
+          /* If seeking fails, the poster fallback stays visible. */
+        }
+      }, { once: true });
+
+      video.addEventListener('seeked', () => {
+        try { video.pause(); } catch {}
+      }, { once: true });
+
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'film-toggle';
+      toggle.setAttribute('aria-label', `Open ${item.title}`);
+      toggle.innerHTML = '<span class="film-play-badge"><span class="film-play-icon" aria-hidden="true"></span><span class="film-toggle-label">Open file</span></span>';
+
+      toggle.addEventListener('click', async () => {
+        try {
+          window.open(encodeURI(videoPath), '_blank', 'noopener');
+        } catch {
+          window.location.href = encodeURI(videoPath);
+        }
+      });
+
+      video.addEventListener('click', () => {
+        try {
+          window.open(encodeURI(videoPath), '_blank', 'noopener');
+        } catch {
+          window.location.href = encodeURI(videoPath);
+        }
+      });
+
+      media.append(video, toggle);
+
+      const meta = document.createElement('div');
+      meta.className = 'film-meta';
+      const title = document.createElement('h3');
+      title.textContent = item.title;
+      const subtitle = document.createElement('p');
+      subtitle.textContent = item.subtitle || item.file;
+      meta.append(title, subtitle);
+
+      card.append(media, meta);
+
+      return card;
+    };
+
+    const renderFilms = (videos) => {
+      filmGrid.innerHTML = '';
+      filmMore.innerHTML = '';
+      filmEmpty.style.display = videos.length ? 'none' : 'block';
+      filmRevealToggle.hidden = videos.length <= 3;
+      filmMore.hidden = !filmExpanded || videos.length <= 3;
+      filmRevealToggle.textContent = filmExpanded ? 'Hide' : 'Reveal more';
+
+      if (!videos.length) return;
+
+      const firstRow = videos.slice(0, 3);
+      const extraRows = videos.slice(3);
+
+      const firstFragment = document.createDocumentFragment();
+      firstRow.forEach((item, index) => {
+        firstFragment.append(createCard(item, index));
+      });
+      filmGrid.append(firstFragment);
+
+      if (extraRows.length) {
+        const extraFragment = document.createDocumentFragment();
+        extraRows.forEach((item, index) => {
+          extraFragment.append(createCard(item, index + 3));
+        });
+        filmMore.append(extraFragment);
+        filmMore.hidden = !filmExpanded;
+      } else {
+        filmMore.hidden = true;
+      }
+    };
+
+    filmRevealToggle.addEventListener('click', () => {
+      filmExpanded = !filmExpanded;
+      renderFilms(currentVideos);
+    });
+
+    const refreshVideos = async () => {
+      currentVideos = await loadVideos();
+      renderFilms(currentVideos);
+    };
+
+    refreshVideos();
+    window.addEventListener('storage', (event) => {
+      if (event.key === storageKey) refreshVideos();
+    });
+  })();
+</script>
+
+<script>
+  (function photoAlbumManager() {
+    const storageKey = 'zbz-photo-albums-v1';
+    const catalogPath = 'Photo Albums/albums.json';
+    const sections = {
+      editorial: {
+        grid: document.getElementById('editorialGrid'),
+        more: document.getElementById('editorialMore'),
+        empty: document.getElementById('editorialEmpty'),
+        toggle: document.getElementById('editorialToggle'),
+      },
+      commercial: {
+        grid: document.getElementById('commercialGrid'),
+        more: document.getElementById('commercialMore'),
+        empty: document.getElementById('commercialEmpty'),
+        toggle: document.getElementById('commercialToggle'),
+      },
+      personal: {
+        grid: document.getElementById('personalGrid'),
+        more: document.getElementById('personalMore'),
+        empty: document.getElementById('personalEmpty'),
+        toggle: document.getElementById('personalToggle'),
+      },
+    };
+
+    const sectionState = { editorial: false, commercial: false, personal: false };
+    const sectionOrder = ['editorial', 'commercial', 'personal'];
+    let currentAlbums = [];
+
+    const hasSection = (key) => sections[key] && sections[key].grid && sections[key].more && sections[key].empty && sections[key].toggle;
+    if (!sectionOrder.some(hasSection)) return;
+
+    const readAlbums = () => {
+      try {
+        const raw = localStorage.getItem(storageKey);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed.filter(item => item && item.id && item.section && item.title) : [];
+      } catch {
+        return [];
+      }
+    };
+
+    const normalizeAlbum = (album) => {
+      if (!album || !album.id || !album.section || !album.title) return null;
+      return {
+        id: String(album.id),
+        section: String(album.section),
+        title: String(album.title),
+        subtitle: String(album.subtitle || ''),
+        folder: String(album.folder || album.path || '').trim(),
+        cover: String(album.cover || album.coverFile || album.coverImage || '').trim(),
+        photos: Array.isArray(album.photos) ? album.photos.map(item => String(item || '').trim()).filter(Boolean) : [],
+      };
+    };
+
+    const loadRemoteAlbums = async () => {
+      try {
+        const response = await fetch(`${encodeURI(catalogPath)}?v=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) return [];
+        const parsed = await response.json();
+        return Array.isArray(parsed) ? parsed.map(normalizeAlbum).filter(Boolean) : [];
+      } catch {
+        return [];
+      }
+    };
+
+    const loadAlbums = async () => {
+      const remoteAlbums = await loadRemoteAlbums();
+      if (remoteAlbums.length) return remoteAlbums;
+      return readAlbums().map(normalizeAlbum).filter(Boolean);
+    };
+
+    const resolvePath = (folder, file) => {
+      const cleanFolder = String(folder || '').trim().replace(/\/+$/, '');
+      const cleanFile = String(file || '').trim().replace(/^\/+/, '');
+      return cleanFolder ? `${cleanFolder}/${cleanFile}` : cleanFile;
+    };
+
+    const escapeXml = (value) => String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+
+    const coverFallback = (title, subtitle, index) => {
+      const palette = [
+        ['#bfa785', '#2a2118'],
+        ['#8a7c6b', '#151515'],
+        ['#c2b9a2', '#26211c'],
+        ['#a99a84', '#131313']
+      ][index % 4];
+      const safeTitle = escapeXml(title);
+      const safeSubtitle = escapeXml(subtitle || 'Photo album');
+      return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 960">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="${palette[0]}"/>
+              <stop offset="100%" stop-color="${palette[1]}"/>
+            </linearGradient>
+          </defs>
+          <rect width="1280" height="960" fill="url(#g)"/>
+          <rect width="1280" height="960" fill="rgba(10,10,10,0.28)"/>
+          <text x="72" y="800" fill="#f2eee8" font-family="Georgia, serif" font-size="74" font-style="italic">${safeTitle}</text>
+          <text x="72" y="864" fill="#c8b89a" font-family="Montserrat, Arial, sans-serif" font-size="24" letter-spacing="6">${safeSubtitle}</text>
+        </svg>
+      `)}`;
+    };
+
+    const createCard = (album, index) => {
+      const link = document.createElement('a');
+      link.className = 'album-card';
+      link.href = `album.html?id=${encodeURIComponent(album.id)}`;
+      link.style.setProperty('--delay', `${index * 90}ms`);
+
+      const media = document.createElement('div');
+      media.className = 'album-media';
+
+      const img = document.createElement('img');
+      const coverName = album.cover || album.coverFile || album.coverImage || '';
+      img.src = coverName ? resolvePath(album.folder, coverName) : coverFallback(album.title, album.subtitle, index);
+      img.alt = album.title;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.addEventListener('error', () => {
+        img.src = coverFallback(album.title, album.subtitle, index);
+      }, { once: true });
+
+      media.append(img);
+
+      const meta = document.createElement('div');
+      meta.className = 'album-meta';
+      const title = document.createElement('h3');
+      title.textContent = album.title;
+      const subtitle = document.createElement('p');
+      subtitle.textContent = album.subtitle || '';
+      meta.append(title, subtitle);
+
+      link.append(media, meta);
+      return link;
+    };
+
+    const renderSection = (sectionKey, albums) => {
+      const config = sections[sectionKey];
+      if (!config) return;
+      const sectionAlbums = albums.filter(album => album.section === sectionKey);
+
+      config.grid.innerHTML = '';
+      config.more.innerHTML = '';
+      config.empty.style.display = sectionAlbums.length ? 'none' : 'block';
+      config.toggle.hidden = sectionAlbums.length <= 3;
+      config.toggle.textContent = sectionState[sectionKey] ? 'Hide' : 'View more';
+      config.more.hidden = !sectionState[sectionKey] || sectionAlbums.length <= 3;
+
+      if (!sectionAlbums.length) return;
+
+      const firstRow = sectionAlbums.slice(0, 3);
+      const extraRows = sectionAlbums.slice(3);
+
+      const firstFragment = document.createDocumentFragment();
+      firstRow.forEach((album, index) => {
+        firstFragment.append(createCard(album, index));
+      });
+      config.grid.append(firstFragment);
+
+      if (extraRows.length) {
+        const extraFragment = document.createDocumentFragment();
+        extraRows.forEach((album, index) => {
+          extraFragment.append(createCard(album, index + 3));
+        });
+        config.more.append(extraFragment);
+        config.more.hidden = !sectionState[sectionKey];
+      }
+    };
+
+    const renderAll = (albums) => sectionOrder.forEach(sectionKey => renderSection(sectionKey, albums));
+
+    sectionOrder.forEach((sectionKey) => {
+      const config = sections[sectionKey];
+      if (!config) return;
+      config.toggle.addEventListener('click', () => {
+        sectionState[sectionKey] = !sectionState[sectionKey];
+        renderSection(sectionKey, currentAlbums);
+      });
+    });
+
+    const refreshAlbums = async () => {
+      currentAlbums = await loadAlbums();
+      renderAll(currentAlbums);
+    };
+
+    refreshAlbums();
+    window.addEventListener('storage', (event) => {
+      if (event.key === storageKey) {
+        refreshAlbums();
+      }
+    });
+  })();
+</script>
+
+<script>
+  // ── Scroll reveal ──
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ── Nav hide on scroll down ──
+  let lastY = 0;
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    nav.style.transform = (y > lastY && y > 80) ? 'translateY(-100%)' : 'translateY(0)';
+    lastY = y;
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Private Admin — Zidane Bin Zayed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #090909;
+    --bg2: #111111;
+    --text: #e8e4dc;
+    --muted: #6b6560;
+    --accent: #c8b89a;
+    --border: #222;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Montserrat', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    min-height: 100vh;
+    font-family: var(--sans);
+    background:
+      radial-gradient(circle at top left, rgba(200,184,154,0.12), transparent 28%),
+      radial-gradient(circle at bottom right, rgba(255,255,255,0.05), transparent 30%),
+      var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.35;
+  }
+  .shell {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 32px 20px;
+  }
+  .gate,
+  .admin-app {
+    width: min(1100px, 100%);
+  }
+  .gate {
+    display: grid;
+    place-items: center;
+    min-height: 72vh;
+  }
+  .gate-card {
+    width: min(560px, 100%);
+    padding: 30px;
+    border: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(17,17,17,0.97), rgba(10,10,10,0.97));
+    box-shadow: 0 20px 40px rgba(0,0,0,0.24);
+  }
+  .eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6vw, 64px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 0.95;
+    margin-bottom: 12px;
+  }
+  .lede {
+    font-size: 12px;
+    line-height: 1.9;
+    color: var(--muted);
+    max-width: 58ch;
+    margin-bottom: 24px;
+  }
+  .gate-form,
+  .film-form {
+    display: grid;
+    gap: 14px;
+  }
+  .gate-row,
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  label span,
+  .field span {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  input, button, textarea {
+    font: inherit;
+  }
+  .input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .input::placeholder { color: #5e5852; }
+  .input:focus {
+    border-color: rgba(200,184,154,0.65);
+    background: #0d0d0d;
+  }
+  .action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  .btn {
+    padding: 14px 18px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--text);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  }
+  .btn:hover {
+    background: var(--accent);
+    color: #111;
+    transform: translateY(-1px);
+  }
+  .error {
+    min-height: 18px;
+    color: #d39f9f;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+  .admin-app {
+    display: none;
+    padding-bottom: 28px;
+  }
+  .admin-shell {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .panel {
+    border: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(17,17,17,0.98), rgba(12,12,12,0.98));
+    box-shadow: 0 18px 36px rgba(0,0,0,0.16);
+    padding: 24px;
+  }
+  .panel h2 {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .panel p {
+    font-size: 12px;
+    line-height: 1.9;
+    color: var(--muted);
+  }
+  .admin-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 22px;
+  }
+  .link {
+    display: inline-flex;
+    align-items: center;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(200,184,154,0.5);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .section-head {
+    margin-bottom: 18px;
+  }
+  .section-head h3 {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .section-head p {
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+  .film-form {
+    margin-top: 18px;
+  }
+  .film-form .field.full { grid-column: 1 / -1; }
+  .film-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 16px;
+  }
+  .titles {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+  .titles h4 {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .title-list {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+  }
+  .title-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .title-item strong {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .title-item span {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .remove-btn {
+    border: 1px solid rgba(200,184,154,0.45);
+    background: transparent;
+    color: var(--text);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 10px 12px;
+    cursor: pointer;
+    flex: 0 0 auto;
+  }
+  .remove-btn:hover {
+    background: rgba(200,184,154,0.14);
+  }
+  .empty {
+    font-size: 11px;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+  .count {
+    display: inline-block;
+    margin-left: 10px;
+    color: var(--accent);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .panel-wide {
+    grid-column: 1 / -1;
+  }
+  .album-form {
+    margin-top: 18px;
+    display: grid;
+    gap: 14px;
+  }
+  .album-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 16px;
+  }
+  .album-form .field.full { grid-column: 1 / -1; }
+  .album-form textarea.input {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.6;
+  }
+  .album-form select.input {
+    appearance: none;
+  }
+  .album-note {
+    font-size: 11px;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+  .video-note {
+    font-size: 11px;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+  .album-list {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .album-item {
+    display: grid;
+    grid-template-columns: 88px 1fr auto;
+    gap: 14px;
+    align-items: start;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .album-thumb {
+    width: 88px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    background: #0b0b0b;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .album-details strong {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .album-details span {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .album-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .album-action {
+    border: 1px solid rgba(200,184,154,0.45);
+    background: transparent;
+    color: var(--text);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 10px 12px;
+    cursor: pointer;
+  }
+  .album-action:hover {
+    background: rgba(200,184,154,0.14);
+  }
+  .album-empty {
+    font-size: 11px;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+  @media (max-width: 900px) {
+    .shell { padding: 18px 16px; }
+    .gate-card, .panel { padding: 20px; }
+    .admin-shell { grid-template-columns: 1fr; }
+    .film-form-grid { grid-template-columns: 1fr; }
+    .album-form-grid { grid-template-columns: 1fr; }
+    .album-item { grid-template-columns: 1fr; }
+    .title-item { align-items: flex-start; }
+    .title-item strong { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+  <main class="shell">
+    <section class="gate" id="gate">
+      <div class="gate-card">
+        <p class="eyebrow">Private access</p>
+        <h1>Film Admin</h1>
+        <p class="lede">Enter the password to manage your film gallery. This page is separate from the public portfolio and is the only place where video entries can be added or removed.</p>
+        <form class="gate-form" id="gateForm">
+          <label class="gate-row">
+            <span>Password</span>
+            <input class="input" id="gatePassword" type="password" placeholder="Enter password" autocomplete="current-password" required>
+          </label>
+          <div class="action-row">
+            <button class="btn" type="submit">Unlock panel</button>
+            <a class="link" href="index.html">Back to site</a>
+          </div>
+          <p class="error" id="gateError" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="admin-app" id="adminApp" aria-hidden="true">
+      <div class="admin-shell">
+        <div class="panel">
+          <div class="section-head">
+            <p class="eyebrow">Admin panel</p>
+            <h2>Direct MP4 uploads</h2>
+            <p>Drop your .mp4 files in the same folder as this page and index.html. Add the exact filename, title, and subtitle here, and the public portfolio will render them automatically.</p>
+          </div>
+
+          <form class="film-form" id="filmForm">
+            <div class="film-form-grid">
+              <label class="field full">
+                <span>Title</span>
+                <input class="input" name="title" type="text" placeholder="BMW Showroom — Sheikh Zayed Road" required>
+              </label>
+              <label class="field">
+                <span>Subtitle</span>
+                <input class="input" name="subtitle" type="text" placeholder="Commercial · Dubai, 2025" required>
+              </label>
+              <label class="field">
+                <span>MP4 filename</span>
+                <input class="input" name="file" type="text" placeholder="showroom-film.mp4" required>
+              </label>
+            </div>
+            <div class="action-row">
+              <button class="btn" type="submit">Add video</button>
+              <button class="btn" type="button" id="videoExportBtn">Download videos.json</button>
+              <p>Use the exact filename already sitting beside this admin page.</p>
+            </div>
+            <p class="video-note">Download <code>videos.json</code> after you’ve added your current videos, then place it inside the <code>Video Albums</code> folder beside the MP4s for publishing.</p>
+          </form>
+        </div>
+
+        <div class="panel">
+          <div class="section-head">
+            <p class="eyebrow">Saved titles</p>
+            <h3 style="font-family: var(--serif); font-size: 28px; font-weight: 400; font-style: italic; line-height: 1;">Current entries <span class="count" id="videoCount">0</span></h3>
+            <p>These are the items that appear in the public film section.</p>
+          </div>
+          <ul class="title-list" id="titleList"></ul>
+          <p class="empty" id="emptyState">No videos saved yet.</p>
+        </div>
+
+        <div class="panel panel-wide">
+          <div class="section-head">
+            <p class="eyebrow">Photo albums</p>
+            <h2 style="margin-bottom: 10px;">Editorial, Commercial, Personal</h2>
+            <p>Create albums for any section, set a cover image, and define the photos that open in the album carousel page.</p>
+          </div>
+
+          <form class="album-form" id="albumForm">
+            <div class="album-form-grid">
+              <label class="field">
+                <span>Section</span>
+                <select class="input" name="section" required>
+                  <option value="editorial">Editorial</option>
+                  <option value="commercial">Commercial</option>
+                  <option value="personal">Personal Work</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Folder</span>
+                <input class="input" name="folder" type="text" placeholder="albums/gfsmun" required>
+              </label>
+              <label class="field full">
+                <span>Album title</span>
+                <input class="input" name="title" type="text" placeholder="Album title" required>
+              </label>
+              <label class="field full">
+                <span>Subtitle</span>
+                <input class="input" name="subtitle" type="text" placeholder="Album subtitle" required>
+              </label>
+              <label class="field">
+                <span>Cover filename</span>
+                <input class="input" name="cover" type="text" placeholder="cover.jpg" required>
+              </label>
+              <label class="field">
+                <span>Photo filenames</span>
+                <textarea class="input" name="photos" placeholder="photo-1.jpg&#10;photo-2.jpg&#10;photo-3.jpg" required></textarea>
+              </label>
+            </div>
+            <div class="action-row">
+              <button class="btn" type="button" id="albumImportBtn">Load album folder</button>
+              <button class="btn" type="button" id="albumExportBtn">Download album.json</button>
+              <button class="btn" type="button" id="albumCatalogExportBtn">Download albums.json</button>
+              <input id="albumFolderInput" type="file" webkitdirectory directory multiple hidden>
+            </div>
+            <p class="album-note">Pick the album folder that contains the cover image and the photos. The form fills itself from the folder contents, then you can save the album or download the JSON files for publishing.</p>
+            <div class="action-row">
+              <button class="btn" type="submit" id="albumSubmit">Add album</button>
+              <button class="btn" type="button" id="albumCancel" hidden>Cancel edit</button>
+              <p>Use the folder picker above to avoid typing each filename by hand.</p>
+            </div>
+          </form>
+
+          <div class="titles">
+            <h4>Saved albums</h4>
+            <ul class="album-list" id="albumList"></ul>
+            <p class="album-empty" id="albumEmpty">No albums saved yet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function adminGate() {
+      const PASSWORD = '2008_Zayed';
+      const AUTH_KEY = 'zbz-admin-auth-v1';
+      const STORAGE_KEY = 'zbz-film-videos-v1';
+
+      const gate = document.getElementById('gate');
+      const adminApp = document.getElementById('adminApp');
+      const gateForm = document.getElementById('gateForm');
+      const gatePassword = document.getElementById('gatePassword');
+      const gateError = document.getElementById('gateError');
+      const filmForm = document.getElementById('filmForm');
+      const titleList = document.getElementById('titleList');
+      const emptyState = document.getElementById('emptyState');
+      const videoCount = document.getElementById('videoCount');
+      const albumForm = document.getElementById('albumForm');
+      const albumList = document.getElementById('albumList');
+      const albumEmpty = document.getElementById('albumEmpty');
+      const albumSubmit = document.getElementById('albumSubmit');
+      const albumCancel = document.getElementById('albumCancel');
+      const albumImportBtn = document.getElementById('albumImportBtn');
+      const albumExportBtn = document.getElementById('albumExportBtn');
+      const albumCatalogExportBtn = document.getElementById('albumCatalogExportBtn');
+      const albumFolderInput = document.getElementById('albumFolderInput');
+      const videoExportBtn = document.getElementById('videoExportBtn');
+      const PHOTO_KEY = 'zbz-photo-albums-v1';
+      let editingAlbumId = null;
+      let importedAlbumState = { folder: '', cover: '', photos: [] };
+      let renderAlbums = () => {};
+
+      const readVideos = () => {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          const parsed = raw ? JSON.parse(raw) : [];
+          return Array.isArray(parsed) ? parsed.filter(item => item && item.file && item.title) : [];
+        } catch {
+          return [];
+        }
+      };
+
+      const writeVideos = (videos) => {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(videos));
+        } catch (error) {
+          console.warn('Could not persist film videos:', error);
+        }
+      };
+
+      const toVideoManifest = (video) => ({
+        id: video.id,
+        title: video.title,
+        subtitle: video.subtitle,
+        file: video.file,
+      });
+
+      const setAuthed = () => {
+        sessionStorage.setItem(AUTH_KEY, '1');
+        gate.style.display = 'none';
+        adminApp.style.display = 'block';
+        adminApp.setAttribute('aria-hidden', 'false');
+      };
+
+      const render = () => {
+        const videos = readVideos();
+        titleList.innerHTML = '';
+        emptyState.style.display = videos.length ? 'none' : 'block';
+        videoCount.textContent = String(videos.length);
+
+        videos.forEach((item, index) => {
+          const li = document.createElement('li');
+          li.className = 'title-item';
+
+          const copy = document.createElement('div');
+          const title = document.createElement('strong');
+          title.textContent = item.title;
+          const meta = document.createElement('span');
+          meta.textContent = `${item.subtitle || 'No subtitle'} · ${item.file}`;
+          copy.append(title, meta);
+
+          const remove = document.createElement('button');
+          remove.type = 'button';
+          remove.className = 'remove-btn';
+          remove.textContent = 'Remove';
+          remove.addEventListener('click', () => {
+            const next = readVideos().filter((_, i) => i !== index);
+            writeVideos(next);
+            render();
+          });
+
+          li.append(copy, remove);
+          titleList.appendChild(li);
+        });
+
+        renderAlbums();
+      };
+
+      const exportVideosJson = () => {
+        const videos = readVideos().map(toVideoManifest);
+        downloadTextFile('videos.json', `${JSON.stringify(videos, null, 2)}\n`);
+      };
+
+      const readAlbums = () => {
+        try {
+          const raw = localStorage.getItem(PHOTO_KEY);
+          const parsed = raw ? JSON.parse(raw) : [];
+          return Array.isArray(parsed) ? parsed.filter(item => item && item.id && item.section && item.title) : [];
+        } catch {
+          return [];
+        }
+      };
+
+      const writeAlbums = (albums) => {
+        try {
+          localStorage.setItem(PHOTO_KEY, JSON.stringify(albums));
+        } catch (error) {
+          console.warn('Could not persist photo albums:', error);
+        }
+      };
+
+      const IMAGE_EXTENSIONS = new Set(['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif', 'bmp']);
+
+      const basename = (value) => String(value || '').split('/').filter(Boolean).pop() || '';
+
+      const isImageFile = (value) => {
+        const name = basename(value).toLowerCase();
+        const extension = name.includes('.') ? name.split('.').pop() : '';
+        return IMAGE_EXTENSIONS.has(extension);
+      };
+
+      const ensurePhotoAlbumsPrefix = (value) => {
+        const clean = String(value || '').trim().replace(/\/+$/, '');
+        if (!clean) return '';
+        return clean.startsWith('Photo Albums/') ? clean : `Photo Albums/${clean}`;
+      };
+
+      const commonPath = (paths) => {
+        if (!paths.length) return '';
+        const splitPaths = paths.map(path => String(path || '').split('/').filter(Boolean));
+        const shortest = Math.min(...splitPaths.map(path => path.length));
+        const shared = [];
+        for (let index = 0; index < shortest; index += 1) {
+          const segment = splitPaths[0][index];
+          if (!splitPaths.every(path => path[index] === segment)) break;
+          shared.push(segment);
+        }
+        return shared.join('/');
+      };
+
+      const downloadTextFile = (filename, content) => {
+        const blob = new Blob([content], { type: 'application/json;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 0);
+      };
+
+      const toAlbumManifest = (album) => ({
+        id: album.id,
+        section: album.section,
+        folder: album.folder,
+        title: album.title,
+        subtitle: album.subtitle,
+        cover: album.cover || album.coverFile || album.coverImage || '',
+        photos: Array.isArray(album.photos) ? album.photos : [],
+      });
+
+      const resolvePath = (folder, file) => {
+        const cleanFolder = String(folder || '').trim().replace(/\/+$/, '');
+        const cleanFile = String(file || '').trim().replace(/^\/+/, '');
+        return cleanFolder ? `${cleanFolder}/${cleanFile}` : cleanFile;
+      };
+
+      const normalizePhotos = (value) => String(value || '')
+        .split(/[\n,]+/)
+        .map(item => item.trim())
+        .filter(Boolean);
+
+      const escapeXml = (value) => String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+
+      const coverFallback = (title, subtitle, index) => {
+        const palette = [
+          ['#bfa785', '#2a2118'],
+          ['#8a7c6b', '#151515'],
+          ['#c2b9a2', '#26211c'],
+          ['#a99a84', '#131313']
+        ][index % 4];
+        const safeTitle = escapeXml(title);
+        const safeSubtitle = escapeXml(subtitle || 'Photo album');
+        return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 960">
+            <defs>
+              <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="${palette[0]}"/>
+                <stop offset="100%" stop-color="${palette[1]}"/>
+              </linearGradient>
+            </defs>
+            <rect width="1280" height="960" fill="url(#g)"/>
+            <rect width="1280" height="960" fill="rgba(10,10,10,0.28)"/>
+            <text x="72" y="800" fill="#f2eee8" font-family="Georgia, serif" font-size="74" font-style="italic">${safeTitle}</text>
+            <text x="72" y="864" fill="#c8b89a" font-family="Montserrat, Arial, sans-serif" font-size="24" letter-spacing="6">${safeSubtitle}</text>
+          </svg>
+        `)}`;
+      };
+
+      const setAlbumEditing = (album) => {
+        editingAlbumId = album ? album.id : null;
+        albumSubmit.textContent = editingAlbumId ? 'Update album' : 'Add album';
+        albumCancel.hidden = !editingAlbumId;
+        if (!album) {
+          importedAlbumState = { folder: '', cover: '', photos: [] };
+          albumForm.reset();
+          albumForm.elements.section.value = 'editorial';
+          albumForm.elements.folder.value = '';
+          albumForm.elements.title.value = '';
+          albumForm.elements.subtitle.value = '';
+          albumForm.elements.cover.value = '';
+          albumForm.elements.photos.value = '';
+          return;
+        }
+        albumForm.elements.section.value = album.section || 'editorial';
+        albumForm.elements.folder.value = album.folder || '';
+        albumForm.elements.title.value = album.title || '';
+        albumForm.elements.subtitle.value = album.subtitle || '';
+        albumForm.elements.cover.value = album.cover || album.coverFile || '';
+        const photos = Array.isArray(album.photos) ? album.photos.filter(Boolean) : [];
+        albumForm.elements.photos.value = photos.join('\n');
+        importedAlbumState = {
+          folder: album.folder || '',
+          cover: album.cover || album.coverFile || '',
+          photos
+        };
+      };
+
+      renderAlbums = () => {
+        const albums = readAlbums();
+        albumList.innerHTML = '';
+        albumEmpty.style.display = albums.length ? 'none' : 'block';
+
+        albums.forEach((album, index) => {
+          const li = document.createElement('li');
+          li.className = 'album-item';
+
+          const thumb = document.createElement('img');
+          thumb.className = 'album-thumb';
+          const coverName = album.cover || album.coverFile || '';
+          thumb.src = coverName ? resolvePath(album.folder, coverName) : coverFallback(album.title, album.subtitle, index);
+          thumb.alt = album.title;
+          thumb.loading = 'lazy';
+          thumb.decoding = 'async';
+          thumb.addEventListener('error', () => {
+            thumb.src = coverFallback(album.title, album.subtitle, index);
+          }, { once: true });
+
+          const details = document.createElement('div');
+          details.className = 'album-details';
+          const title = document.createElement('strong');
+          title.textContent = album.title;
+          const meta = document.createElement('span');
+          meta.textContent = `${album.section} · ${album.folder || 'no folder'} · ${Array.isArray(album.photos) ? album.photos.length : 0} photos`;
+          const subtitle = document.createElement('span');
+          subtitle.textContent = album.subtitle || '';
+          details.append(title, meta, subtitle);
+
+          const actions = document.createElement('div');
+          actions.className = 'album-actions';
+          const edit = document.createElement('button');
+          edit.type = 'button';
+          edit.className = 'album-action';
+          edit.textContent = 'Edit';
+          edit.addEventListener('click', () => setAlbumEditing(album));
+          const remove = document.createElement('button');
+          remove.type = 'button';
+          remove.className = 'album-action';
+          remove.textContent = 'Remove';
+          remove.addEventListener('click', () => {
+            writeAlbums(readAlbums().filter(item => item.id !== album.id));
+            if (editingAlbumId === album.id) setAlbumEditing(null);
+            renderAlbums();
+          });
+          actions.append(edit, remove);
+
+          li.append(thumb, details, actions);
+          albumList.appendChild(li);
+        });
+      };
+
+      const getAlbumFormPayload = () => {
+        const formData = new FormData(albumForm);
+        const section = String(formData.get('section') || '').trim();
+        const folder = ensurePhotoAlbumsPrefix(formData.get('folder'));
+        const title = String(formData.get('title') || '').trim();
+        const subtitle = String(formData.get('subtitle') || '').trim();
+        const cover = String(formData.get('cover') || '').trim();
+        const photos = normalizePhotos(formData.get('photos'));
+        return { section, folder, title, subtitle, cover, photos };
+      };
+
+      const syncImportedStateFromForm = (payload) => {
+        importedAlbumState = {
+          folder: payload.folder,
+          cover: payload.cover,
+          photos: [...payload.photos],
+        };
+      };
+
+      const applyImportedFiles = (files) => {
+        const fileList = Array.from(files || []);
+        if (!fileList.length) return;
+
+        const entries = fileList
+          .map(file => ({
+            file,
+            relative: String(file.webkitRelativePath || file.name || '').replace(/\\/g, '/'),
+          }))
+          .filter(entry => entry.relative);
+
+        const imageEntries = entries.filter(entry => isImageFile(entry.relative));
+        if (!imageEntries.length) return;
+
+        const parentPaths = imageEntries.map(entry => {
+          const parts = entry.relative.split('/').filter(Boolean);
+          return parts.slice(0, -1).join('/');
+        });
+        const inferredFolder = commonPath(parentPaths);
+        const folderValue = ensurePhotoAlbumsPrefix(inferredFolder || albumForm.elements.folder.value || '');
+
+        const coverEntry = imageEntries.find(entry => /(^|\/)(cover|thumbnail|thumb)\./i.test(entry.relative)) || imageEntries[0];
+        const stripBase = (value) => {
+          const clean = String(value || '').replace(/\\/g, '/');
+          if (!inferredFolder) return clean;
+          const prefix = `${inferredFolder}/`;
+          return clean.startsWith(prefix) ? clean.slice(prefix.length) : clean;
+        };
+        const coverPath = stripBase(coverEntry.relative);
+
+        const photoSet = new Set();
+        const photos = [];
+        imageEntries
+          .map(entry => stripBase(entry.relative))
+          .filter(Boolean)
+          .forEach((relative) => {
+            const normalized = relative;
+            if (photoSet.has(normalized)) return;
+            photoSet.add(normalized);
+            photos.push(normalized);
+          });
+
+        albumForm.elements.folder.value = folderValue;
+        if (!albumForm.elements.title.value.trim()) {
+          albumForm.elements.title.value = basename(folderValue) || 'Untitled album';
+        }
+        albumForm.elements.cover.value = coverPath;
+        albumForm.elements.photos.value = photos.join('\n');
+
+        importedAlbumState = {
+          folder: folderValue,
+          cover: coverPath,
+          photos,
+        };
+      };
+
+      const exportCurrentAlbumJson = () => {
+        const payload = getAlbumFormPayload();
+        if (!payload.section || !payload.folder || !payload.title || !payload.subtitle || !payload.cover || !payload.photos.length) return;
+        const album = {
+          id: editingAlbumId || `album-${Date.now()}`,
+          section: payload.section,
+          folder: payload.folder,
+          title: payload.title,
+          subtitle: payload.subtitle,
+          cover: payload.cover,
+          photos: payload.photos,
+        };
+        downloadTextFile('album.json', `${JSON.stringify(album, null, 2)}\n`);
+      };
+
+      const exportAlbumsJson = () => {
+        const albums = readAlbums().map(toAlbumManifest);
+        downloadTextFile('albums.json', `${JSON.stringify(albums, null, 2)}\n`);
+      };
+
+      const submitAlbum = (event) => {
+        event.preventDefault();
+        const { section, folder, title, subtitle, cover, photos } = getAlbumFormPayload();
+        if (!section || !folder || !title || !subtitle || !cover || !photos.length) return;
+
+        const albums = readAlbums();
+        const payload = {
+          id: editingAlbumId || (crypto.randomUUID ? crypto.randomUUID() : `album-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`),
+          section,
+          folder,
+          title,
+          subtitle,
+          cover,
+          photos
+        };
+
+        const index = albums.findIndex(item => item.id === payload.id);
+        if (index >= 0) {
+          albums[index] = payload;
+        } else {
+          albums.unshift(payload);
+        }
+
+        writeAlbums(albums);
+        syncImportedStateFromForm(payload);
+        editingAlbumId = null;
+        albumSubmit.textContent = 'Add album';
+        albumCancel.hidden = true;
+        albumForm.reset();
+        albumForm.elements.section.value = 'editorial';
+        renderAlbums();
+      };
+
+      albumForm.addEventListener('submit', submitAlbum);
+      albumCancel.addEventListener('click', () => setAlbumEditing(null));
+      albumImportBtn.addEventListener('click', () => albumFolderInput.click());
+      albumFolderInput.addEventListener('change', () => {
+        applyImportedFiles(albumFolderInput.files);
+        albumFolderInput.value = '';
+      });
+      albumExportBtn.addEventListener('click', exportCurrentAlbumJson);
+      albumCatalogExportBtn.addEventListener('click', exportAlbumsJson);
+      videoExportBtn.addEventListener('click', exportVideosJson);
+
+      const unlock = () => {
+        if (sessionStorage.getItem(AUTH_KEY) === '1') {
+          setAuthed();
+          render();
+        } else {
+          gatePassword.focus();
+        }
+      };
+
+      gateForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (gatePassword.value.trim() === PASSWORD) {
+          gateError.textContent = '';
+          setAuthed();
+          render();
+          filmForm.querySelector('input[name="title"]').focus();
+        } else {
+          gateError.textContent = 'Incorrect password.';
+          gatePassword.select();
+        }
+      });
+
+      filmForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const formData = new FormData(filmForm);
+        const title = String(formData.get('title') || '').trim();
+        const subtitle = String(formData.get('subtitle') || '').trim();
+        const file = String(formData.get('file') || '').trim();
+        if (!title || !subtitle || !file) return;
+
+        const videos = readVideos();
+        videos.unshift({
+          id: crypto.randomUUID ? crypto.randomUUID() : `film-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+          title,
+          subtitle,
+          file
+        });
+
+        writeVideos(videos);
+        filmForm.reset();
+        render();
+      });
+
+      unlock();
+      if (sessionStorage.getItem(AUTH_KEY) === '1') {
+        render();
+      }
+
+      window.addEventListener('storage', (event) => {
+        if (event.key === STORAGE_KEY || event.key === PHOTO_KEY) render();
+      });
+    })();
+  </script>
+</body>
+</html>
